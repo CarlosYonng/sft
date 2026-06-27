@@ -38,6 +38,12 @@ python scripts/merge_lora.py --config configs/medical_qwen25_3b.yaml --adapter o
 python scripts/evaluate_prompts.py --config configs/medical_qwen25_3b.yaml --model outputs/qwen25-3b-medical-merged
 ```
 
+## VSCode Direct Run
+
+如果不想手动输入命令，可以直接使用 VSCode 左侧 **运行和调试** 面板。本项目已提供 `.vscode/launch.json`，可选择 `SFT: Compare Base vs LoRA`、`SFT: Chat Base Model`、`SFT: Chat LoRA Model`、`SFT: Chat Merged Model` 等配置。
+
+详细说明见 [docs/VSCODE_RUN.md](docs/VSCODE_RUN.md)。
+
 ## Hardware Notes
 
 RTX 4070 12GB 建议首轮配置：
