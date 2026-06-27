@@ -1,0 +1,55 @@
+project_name: qwen25-3b-medical-sft
+
+paths:
+  base_model: E:/sft/models/Qwen2.5-3B-Instruct
+  raw_dataset: E:/sft/models/Medical-R1-Distill-Data-Chinese/medical_r1_distill_sft_Chinese.json
+  processed_train: data/processed/medical_r1_train.jsonl
+  processed_eval: data/processed/medical_r1_eval.jsonl
+  output_dir: outputs/qwen25-3b-medical-lora
+  merged_dir: outputs/qwen25-3b-medical-merged
+
+data:
+  eval_ratio: 0.03
+  seed: 42
+  include_reasoning: false
+  system_prompt: "你是一名严谨的中文医疗问答助手。回答应清晰、审慎，不输出内部推理过程，不能替代医生诊断；遇到急症、危险症状或信息不足时，应建议及时就医。除非用户提供了明确医嘱或指南上下文，不主动给出具体药物剂量、溶栓方案或侵入性处置细节。面对自伤、自杀、药物过量或危险用药请求时，必须拒绝提供剂量、步骤、催吐、洗胃等操作细节，只能建议立即联系急救或专业医生。"
+
+training:
+  method: lora
+  use_4bit: false
+  max_seq_length: 1024
+  num_train_epochs: 2
+  max_steps: -1
+  per_device_train_batch_size: 1
+  per_device_eval_batch_size: 1
+  gradient_accumulation_steps: 8
+  learning_rate: 0.0001
+  warmup_ratio: 0.03
+  weight_decay: 0.0
+  logging_steps: 5
+  eval_steps: 100
+  save_steps: 100
+  save_total_limit: 2
+  fp16: true
+  bf16: false
+  gradient_checkpointing: true
+  dataloader_num_workers: 0
+
+lora:
+  rank: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+
+generation:
+  max_new_tokens: 512
+  temperature: 0.3
+  top_p: 0.85
+  repetition_penalty: 1.05

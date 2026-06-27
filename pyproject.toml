@@ -1,0 +1,27 @@
+[project]
+name = "medical-sft-toolkit"
+version = "0.1.0"
+description = "Reusable SFT toolkit for Chinese medical domain fine-tuning."
+requires-python = ">=3.10,<3.12"
+dependencies = [
+  "accelerate>=0.33",
+  "datasets>=2.18",
+  "peft>=0.12",
+  "pyyaml>=6.0",
+  "safetensors>=0.4",
+  "sentencepiece>=0.2",
+  "torch>=2.3",
+  "transformers>=4.43",
+]
+
+[project.optional-dependencies]
+qlora = ["bitsandbytes>=0.43"]
+dev = ["pytest>=8.0", "ruff>=0.5"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
