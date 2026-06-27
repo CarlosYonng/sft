@@ -2,102 +2,16 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "SFT: Compare Base vs LoRA",
+      "name": "Python: Current File",
       "type": "debugpy",
       "request": "launch",
-      "program": "${workspaceFolder}/scripts/compare_models.py",
+      "program": "${file}",
       "python": "${workspaceFolder}/.conda/sft-med/python.exe",
       "cwd": "${workspaceFolder}",
       "console": "integratedTerminal",
       "env": {
         "PYTHONPATH": "${workspaceFolder}/src"
-      },
-      "args": [
-        "--config",
-        "configs/medical_qwen25_3b.yaml",
-        "--question",
-        "${input:medicalQuestion}"
-      ]
-    },
-    {
-      "name": "SFT: Chat Base Model",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "${workspaceFolder}/scripts/chat_test.py",
-      "python": "${workspaceFolder}/.conda/sft-med/python.exe",
-      "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal",
-      "env": {
-        "PYTHONPATH": "${workspaceFolder}/src"
-      },
-      "args": [
-        "--config",
-        "configs/medical_qwen25_3b.yaml"
-      ]
-    },
-    {
-      "name": "SFT: Chat LoRA Model",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "${workspaceFolder}/scripts/chat_test.py",
-      "python": "${workspaceFolder}/.conda/sft-med/python.exe",
-      "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal",
-      "env": {
-        "PYTHONPATH": "${workspaceFolder}/src"
-      },
-      "args": [
-        "--config",
-        "configs/medical_qwen25_3b.yaml",
-        "--adapter",
-        "outputs/qwen25-3b-medical-lora"
-      ]
-    },
-    {
-      "name": "SFT: Chat Merged Model",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "${workspaceFolder}/scripts/chat_test.py",
-      "python": "${workspaceFolder}/.conda/sft-med/python.exe",
-      "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal",
-      "env": {
-        "PYTHONPATH": "${workspaceFolder}/src"
-      },
-      "args": [
-        "--config",
-        "configs/medical_qwen25_3b.yaml",
-        "--model",
-        "outputs/qwen25-3b-medical-merged"
-      ]
-    },
-    {
-      "name": "SFT: Evaluate LoRA",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "${workspaceFolder}/scripts/evaluate_prompts.py",
-      "python": "${workspaceFolder}/.conda/sft-med/python.exe",
-      "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal",
-      "env": {
-        "PYTHONPATH": "${workspaceFolder}/src"
-      },
-      "args": [
-        "--config",
-        "configs/medical_qwen25_3b.yaml",
-        "--adapter",
-        "outputs/qwen25-3b-medical-lora",
-        "--out",
-        "data/reports/vscode_prompt_eval.jsonl"
-      ]
-    }
-  ],
-  "inputs": [
-    {
-      "id": "medicalQuestion",
-      "type": "promptString",
-      "description": "输入要同时问基座模型和微调模型的问题",
-      "default": "患者男，58岁，胸痛30分钟、大汗，心电图提示ST段抬高，应如何紧急处理？"
+      }
     }
   ]
 }

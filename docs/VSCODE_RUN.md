@@ -1,34 +1,43 @@
 # VSCode Run Guide
 
-本项目已内置 `.vscode/launch.json`，可以直接用 VSCode 的运行面板启动模型测试，不需要手动输入命令。
+本项目支持像普通 Python 开发一样直接运行文件、打断点、看集成终端输出。
 
 ## 使用步骤
 
 1. 在 VSCode 打开项目目录：`C:\Users\CarlorYonng\Documents\sft`
-2. 点击左侧的 **运行和调试** 图标。
-3. 顶部下拉框选择一个配置。
-4. 点击绿色三角按钮运行。
+2. 打开根目录下的一个运行入口文件。
+3. 点击编辑器右上角的 **Run Python File**，或者按 `F5`。
+4. 在代码里打断点即可调试。
 
-## 常用配置
+## 入口文件
 
-- `SFT: Compare Base vs LoRA`
-  - 输入一个问题。
-  - 自动先跑基座模型，再跑 LoRA 微调模型。
-  - 最适合观察微调效果。
+- `run_compare.py`
+  - 同一个问题同时跑基座模型和 LoRA 微调模型。
+  - 最适合观察训练效果。
 
-- `SFT: Chat Base Model`
+- `run_base.py`
   - 只跑微调前的 `Qwen2.5-3B-Instruct`。
 
-- `SFT: Chat LoRA Model`
+- `run_lora.py`
   - 跑 `基座模型 + outputs/qwen25-3b-medical-lora`。
 
-- `SFT: Chat Merged Model`
+- `run_merged.py`
   - 跑 `outputs/qwen25-3b-medical-merged`。
 
-- `SFT: Evaluate LoRA`
-  - 跑固定医疗安全评估问题。
-  - 输出保存到 `data/reports/vscode_prompt_eval.jsonl`。
+## 修改问题
+
+打开任意入口文件，修改顶部的 `QUESTION`：
+
+```python
+QUESTION = "糖尿病患者空腹血糖长期偏高，应该如何处理？"
+```
+
+保存后直接运行这个 Python 文件即可。
 
 ## 注意
 
-第一次加载模型会比较慢。运行前建议关闭占用 GPU 的其他程序。
+第一次加载模型会比较慢。运行前建议关闭占用 GPU 的其他程序。如果 VSCode 没有自动识别解释器，请手动选择：
+
+```text
+C:\Users\CarlorYonng\Documents\sft\.conda\sft-med\python.exe
+```

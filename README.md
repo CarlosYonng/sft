@@ -40,7 +40,7 @@ python scripts/evaluate_prompts.py --config configs/medical_qwen25_3b.yaml --mod
 
 ## VSCode Direct Run
 
-如果不想手动输入命令，可以直接使用 VSCode 左侧 **运行和调试** 面板。本项目已提供 `.vscode/launch.json`，可选择 `SFT: Compare Base vs LoRA`、`SFT: Chat Base Model`、`SFT: Chat LoRA Model`、`SFT: Chat Merged Model` 等配置。
+如果不想手动输入命令，可以直接打开根目录的 `run_compare.py`、`run_base.py`、`run_lora.py` 或 `run_merged.py`，点击 VSCode 右上角 **Run Python File**，也可以打断点调试。
 
 详细说明见 [docs/VSCODE_RUN.md](docs/VSCODE_RUN.md)。
 
